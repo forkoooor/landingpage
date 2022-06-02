@@ -320,40 +320,7 @@
                     </div>
                 </div>
 
-                <!-- CTA Section -->
-                <div class="relative bg-gray-50">
-                    <!-- <div class="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
-          <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&sat=-100" alt="">
-          <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-600 mix-blend-multiply"></div>
-        </div> -->
-                    <div class="mx-auto x-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
-                        <div class="text-center">
-                            <p class="mt-2 text-gray-900 text-3xl font-extrabold tracking-tight sm:text-4xl">Join the
-                                fight</p>
-                            <p class="mt-3 text-lg text-gray-500">
-                                Install plugin, enable auto report, keep you eyes open, be careful every transaction sign, stay
-                                safe!
-                            </p>
-                            <div class="mt-8">
-                                <div class="inline-flex rounded-md shadow">
-                                    <a href="https://chrome.google.com/webstore/detail/mask-network/jkoeaghipilijlahjplgbfiocjhldnap"
-                                    target="_blank"
-                                        class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
-                                        Install Mask
-                                        <!-- Heroicon name: solid/external-link -->
-                                        <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path
-                                                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                                            <path
-                                                d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        
                 <div class="max-w-4xl bg-gray-50 mx-auto text-center" style="border-top: 1px solid #eee"></div>
                 <div id="summary-list" class="bg-gray-50 pb-10">
                     <div class="bg-graxy-50 bg-xwhite pt-12 sm:pt-16" v-if="report">
@@ -391,10 +358,22 @@
                     </div>
 
 <div class="max-w-6xl mx-auto">
-                    <div class="rounded-lg bg-white sm:grid sm:grid-cols-2">
+                    <div class="sm:grid sm:grid-cols-2">
                       
                         <div class="flex flex-col p-6 text-center">
-                            <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">Recent Protected</h2>
+
+                            <div class="px-4 py-5 sm:px-6">
+                                <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+                                    <div class="ml-4 mt-2">
+                                        <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Protected</h3>
+                                    </div>
+                                    <div class="ml-4 mt-2 flex-shrink-0">
+                                        <!-- <a href="https://github.com/MetaMask/eth-phishing-detect/pull/7575" target="_blank"
+                                            style="font-size: 12px">Metamask</a> -->
+                                    </div>
+                                </div>
+                            </div>
+
                             <div class="bg-white shadow overflow-hidden sm:rounded-md">
                                 <ul role="list" class="divide-y divide-gray-200">
                                     <li v-for="reported in report.recentScams">
@@ -421,8 +400,26 @@
                             </div>
                         </div>
                         <div class="flex flex-col p-6 text-center">
-                            <!-- This example requires Tailwind CSS v2.0+ -->
-                            <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">Recent Reported</h2>
+
+
+<div class="px-4 py-5 sm:px-6">
+    <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+        <div class="ml-4 mt-2">
+            <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Reported</h3>
+        </div>
+        <div class="ml-4 mt-2 flex-shrink-0">
+<a href="https://github.com/MetaMask/eth-phishing-detect/pull/7575" target="_blank" style="font-size: 12px">
+    <img src="assets/metamask.svg" height="25" style="
+    max-height: 16px;
+" />
+</a>
+        </div>
+    </div>
+</div>
+
+                            <!-- <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">
+                              
+                            </h2> -->
                             <div class="bg-white shadow overflow-hidden sm:rounded-md">
                                 <ul role="list" class="divide-y divide-gray-200">
                                     <li v-for="reported in report.recentReported">
@@ -460,6 +457,65 @@
 
                     <!-- {{ report }} -->
                 </div>
+
+                        <!-- CTA Section -->
+                        <div class="relative bg-gray-50">
+                            <!-- <div class="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+                                  <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&sat=-100" alt="">
+                                  <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-600 mix-blend-multiply"></div>
+                                </div> -->
+                        
+                            <!-- This example requires Tailwind CSS v2.0+ -->
+                            <div class="bg-white">
+                                <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+                                    <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-3">
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-12" src="assets/mask.svg" alt="Mask">
+                                        </div>
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-12" src="assets/metamask-logo.svg" alt="MetaMask">
+                                        </div>
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-12" src="assets/google-safe-browsing.webp" alt="Google SafeBrowsing">
+                                        </div>
+                                        <!-- <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
+                                                <img class="h-12" src="https://tailwindui.com/img/logos/transistor-logo-gray-400.svg" alt="Transistor">
+                                            </div>
+                                            <div class="col-span-2 flex justify-center md:col-span-3 lg:col-span-1">
+                                                <img class="h-12" src="https://tailwindui.com/img/logos/workcation-logo-gray-400.svg" alt="Workcation">
+                                            </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="mx-auto x-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
+                                <div class="text-center">
+                                    <p class="mt-2 text-gray-900 text-3xl font-extrabold tracking-tight sm:text-4xl">Join the
+                                        fight</p>
+                                    <p class="mt-3 text-lg text-gray-500">
+                                        Install plugin, enable auto report, keep you eyes open, be careful every transaction sign, stay
+                                        safe!
+                                    </p>
+                                    <div class="mt-8">
+                                        <div class="inline-flex rounded-md shadow">
+                                            <a href="https://chrome.google.com/webstore/detail/mask-network/jkoeaghipilijlahjplgbfiocjhldnap"
+                                                target="_blank"
+                                                class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                                                Install Mask
+                                                <!-- Heroicon name: solid/external-link -->
+                                                <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                                    viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                    <path
+                                                        d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                                    <path
+                                                        d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             </main>
 
 
@@ -657,8 +713,8 @@
                         data.recentScams = data.recentScams.map(_ => {
                             _.fromNow = moment(_.createdAt).fromNow()
                             return _
-                        }).slice(0, 30)
-                        data.recentReported =  data.recentReported.slice(0, 30)
+                        }).slice(0, 15)
+                        data.recentReported =  data.recentReported.slice(0, 15)
                         this.report = data
                         this.loading = false;
                     },
