@@ -657,7 +657,7 @@
                             _.fromNow = moment(_.createdAt).fromNow()
                             return _
                         }).slice(0, 30)
-                        data.recentReported =  data.recentReported.slice(0, 4)
+                        data.recentReported =  data.recentReported.slice(0, 30)
                         this.report = data
                         this.loading = false;
                     },
