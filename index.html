@@ -390,41 +390,9 @@
                         </div>
                     </div>
 
-
 <div class="max-w-6xl mx-auto">
                     <div class="rounded-lg bg-white sm:grid sm:grid-cols-2">
-                        <div class="flex flex-col p-6 text-center">
-                                <!-- This example requires Tailwind CSS v2.0+ -->
-                                <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">Recent Reported</h2>
-                                <div class="bg-white shadow overflow-hidden sm:rounded-md">
-                                    <ul role="list" class="divide-y divide-gray-200" >
-                                        <li v-for="reported in report.recentReported">
-                                            <a :href="'https://'+reported.host" target="_blank" class="block hover:bg-gray-50">
-                                                <div class="flex  px-4 py-4 sm:px-6">
-                                                    <img class="h-6 w-6 rounded-full mr-2"
-                                                        :src="'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+reported.host+'&size=128'"
-                                                        alt="">
-                                                    <div class="flex-1 space-y-1">
-                                                        <div class="flex items-center justify-between">
-                                                            <h3 class="text-sm text-gray-600  font-medium">{{ reported.host }}</h3>
-                                                            <p class="text-sm text-gray-500">
-                                                                <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                                    fill="currentColor" aria-hidden="true">
-                                                                    <path fill-rule="evenodd"
-                                                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                                                                        clip-rule="evenodd" />
-                                                                </svg>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    
-                                        <!-- More items... -->
-                                    </ul>
-                                </div>
-                        </div>
+                      
                         <div class="flex flex-col p-6 text-center">
                             <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">Recent Protected</h2>
                             <div class="bg-white shadow overflow-hidden sm:rounded-md">
@@ -448,6 +416,39 @@
                                         </a>
                                     </li>
                             
+                                    <!-- More items... -->
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="flex flex-col p-6 text-center">
+                            <!-- This example requires Tailwind CSS v2.0+ -->
+                            <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">Recent Reported</h2>
+                            <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                                <ul role="list" class="divide-y divide-gray-200">
+                                    <li v-for="reported in report.recentReported">
+                                        <a :href="'https://'+reported.host" target="_blank" class="block hover:bg-gray-50">
+                                            <div class="flex  px-4 py-4 sm:px-6">
+                                                <img class="h-6 w-6 rounded-full mr-2"
+                                                    :src="'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+reported.host+'&size=128'"
+                                                    alt="">
+                                                <div class="flex-1 space-y-1">
+                                                    <div class="flex items-center justify-between">
+                                                        <h3 class="text-sm text-gray-600  font-medium">{{ reported.host }}</h3>
+                                                        <p class="text-sm text-gray-500">
+                                                            <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
+                                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+                                                                aria-hidden="true">
+                                                                <path fill-rule="evenodd"
+                                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                                    clip-rule="evenodd" />
+                                                            </svg>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                        
                                     <!-- More items... -->
                                 </ul>
                             </div>
