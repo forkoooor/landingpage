@@ -656,7 +656,7 @@
                         data.recentScams = data.recentScams.map(_ => {
                             _.fromNow = moment(_.createdAt).fromNow()
                             return _
-                        }).slice(0, 4)
+                        }).slice(0, 30)
                         data.recentReported =  data.recentReported.slice(0, 4)
                         this.report = data
                         this.loading = false;
