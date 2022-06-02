@@ -725,8 +725,8 @@
                         data.recentScams = data.recentScams.map(_ => {
                             _.fromNow = moment(_.createdAt).fromNow()
                             return _
-                        }).slice(0, 15)
-                        data.recentReported =  data.recentReported.slice(0, 15)
+                        }).slice(0, 8)
+                        data.recentReported =  data.recentReported.slice(0, 8)
                         this.report = data
                         this.loading = false;
                     },
