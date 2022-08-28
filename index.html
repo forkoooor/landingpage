@@ -671,7 +671,7 @@
                                         <div
                                             class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
                                             <div class="ml-4 mt-2">
-                                                <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Protected
+                                                <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Scam
                                                 </h3>
                                             </div>
                                             <div class="ml-4 mt-2 flex-shrink-0">
@@ -683,7 +683,7 @@
 
                                     <div class="bg-white shadow overflow-hidden sm:rounded-md">
                                         <ul role="list" class="divide-y divide-gray-200">
-                                            <li v-for="reported in report.recentScams">
+                                            <li v-for="reported in report.recentScamActivity">
                                                 <a :href="reported.link" target="_blank" class="block hover:bg-gray-50">
                                                     <div class="flex  px-4 py-4 sm:px-6">
                                                         <img class="h-6 w-6 rounded-full mr-2"
@@ -692,7 +692,7 @@
                                                         <div class="flex-1 space-y-1">
                                                             <div class="flex items-center justify-between">
                                                                 <h3 class="text-sm text-gray-600 font-medium">{{
-                                                                    reported.topDomain }}</h3>
+                                                                    reported.host }}</h3>
                                                                 <p class="text-sm text-gray-500">
                                                                     {{ reported.fromNow}}
                                                                     <!-- {{ reported.project }} -->
@@ -1072,8 +1072,12 @@
             methods: {
                 async loadData() {
                     const { data } = await axios.get('https://api.scamsniffer.io/getStatus')
-                    data.recentScams = data.recentScams.map(_ => {
-                        _.fromNow = moment(_.createdAt).fromNow()
+                    // data.recentScams = data.recentScams.map(_ => {
+                    //     _.fromNow = moment(_.createdAt).fromNow()
+                    //     return _
+                    // }).slice(0, 8)
+                    data.recentScamActivity = data.recentScamActivity.map(_ => {
+                        _.fromNow = moment(_.time).fromNow()
                         return _
                     }).slice(0, 8)
                     data.recentReported = data.recentReported.slice(0, 8)
