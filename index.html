@@ -88,9 +88,41 @@
             const menus = document.querySelector('#submenu')
             if (menus) menus.classList.remove('opacity-0', 'scale-95', "hidden")
         }
+
+        function closeFlyMenu() {
+            const menus = document.querySelector('#product-menu')
+            if (menus) menus.classList.add('opacity-0', 'scale-95', "hidden")
+        }
+
+        function openFlyMenu() {
+            const menus = document.querySelector('#product-menu')
+            const wrapper = document.querySelector("#menu-block");
+            if (menus) menus.classList.remove('opacity-0', 'scale-95', "hidden")
+
+            menus.classList.add("transition", "ease-out", "duration-200")
+            menus.classList.add("opacity-0", "translate-y-1")
+
+            setTimeout(() => {
+                menus.classList.remove("opacity-0", "translate-y-1")
+                menus.classList.add("opacity-100", "translate-y-0")
+            }, 50);
+
+            setTimeout(() => {
+                menus.classList.remove("transition", "ease-out", "duration-200")
+                menus.classList.remove("opacity-100", "translate-y-0")
+            }, 300);
+
+            document.addEventListener('click', event => {
+                const isClickInside = wrapper.contains(event.target)
+                if (!isClickInside) {
+                    closeFlyMenu();
+                }
+            })
+        }
+
     </script>
     <div class="bg-white">
-        <div class="relative overflow-hidden">
+        <div class="relative">
             <header class="relative">
                 <div class="bg-gray-600 pt-6">
                     <nav class="relative max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6"
@@ -118,8 +150,94 @@
 
                             <div class="hidden space-x-8 md:flex md:ml-10">
 
-                                <a href="#products"
-                                    class="text-base font-medium text-white hover:text-gray-300">Products</a>
+                                <div class="relative" id="menu-block">
+
+                                    <!-- <a href="#products"
+                                    class="text-base font-medium text-white hover:text-gray-300">Products</a> -->
+
+                                    <button type="button" onclick="openFlyMenu()"
+                                        class="inline-flex items-center gap-x-1 text-base font-semibold leading-6 text-white hover:text-gray-300"
+                                        aria-expanded="false">
+                                        <span>Products</span>
+                                        <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd"
+                                                d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                    </button>
+
+
+                                    <!--
+          'Product' flyout menu, show/hide based on flyout menu state.
+
+          Entering: "transition ease-out duration-200"
+            From: "opacity-0 translate-y-1"
+            To: "opacity-100 translate-y-0"
+          Leaving: "transition ease-in duration-150"
+            From: "opacity-100 translate-y-0"
+            To: "opacity-0 translate-y-1"
+        -->
+                                    <div id="product-menu" class="
+
+        opacity-0 scale-95 hidden
+        absolute -left-8 top-full z-10 mt-3 w-screen max-w-md rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5
+        ">
+
+                                        <div class="p-4">
+                                            <div
+                                                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                                <div
+                                                    class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                                    <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                        stroke="currentColor" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z"></path>
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z"></path>
+                                                    </svg>
+                                                </div>
+                                                <div class="flex-auto">
+                                                    <a href="https://docs.scamsniffer.io/reference/api-reference"
+                                                        target="_blank"
+                                                        class="block font-semibold text-gray-900">
+                                                        Scam Sniffer API
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                    <p class="mt-1 text-gray-600">Provide more safe Browsing and Signing
+                                                        experience for your Users</p>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50">
+                                                <div
+                                                    class="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                                                    <svg class="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                                                        fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                        stroke="currentColor" aria-hidden="true">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div class="flex-auto">
+                                                    <a href="https://chrome.google.com/webstore/detail/scam-sniffer/mnkbccinkbalkmmnmbcicdobcmgggmfc"
+                                                        target="_blank"
+                                                        class="block font-semibold text-gray-900">
+                                                        Chrom Extension
+                                                        <span class="absolute inset-0"></span>
+                                                    </a>
+                                                    <p class="mt-1 text-gray-600">Get real-time alerts when exploring
+                                                        the Web3</p>
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
 
 
                                 <a href="https://drops.scamsniffer.io"
@@ -144,42 +262,43 @@
                                 class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-white bg-gray-700 hover:bg-gray-800">
                                 Add to Chrome</a>
                         </div>
-                    </nav>
                 </div>
+                </nav>
+        </div>
 
-                <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden opacity-0 scale-95 hidden"
-                    id="submenu">
-                    <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
-                        <div class="px-5 pt-4 flex items-center justify-between">
-                            <div>
-                                <img class="h-8 w-auto sm:h-8" src="./assets/logo-black.png" alt="">
-                            </div>
-                            <div class="-mr-2">
-                                <button type="button" onclick="closeMenu()"
-                                    class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
-                                    <span class="sr-only">Close menu</span>
-                                    <!-- Heroicon name: outline/x -->
-                                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                        viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="pt-5 pb-6">
-                            <div class="px-2 space-y-1">
-                                <a href="#products"
-                                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Products</a>
-                                <a href="https://drops.scamsniffer.io"
-                                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Blog</a>
-                                <a href="#fight"
-                                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Community</a>
-                                <!--                                 <a href="https://explorer.scamsniffer.io/" target="_blank"  class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Stolen NFTs Explorer</a> -->
-                                <a href="https://docs.scamsniffer.io/" target="_blank"
-                                    class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">API
-                                    Docs</a>
+        <div class="absolute top-0 inset-x-0 p-2 transition transform origin-top md:hidden opacity-0 scale-95 hidden"
+            id="submenu">
+            <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                <div class="px-5 pt-4 flex items-center justify-between">
+                    <div>
+                        <img class="h-8 w-auto sm:h-8" src="./assets/logo-black.png" alt="">
+                    </div>
+                    <div class="-mr-2">
+                        <button type="button" onclick="closeMenu()"
+                            class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-600">
+                            <span class="sr-only">Close menu</span>
+                            <!-- Heroicon name: outline/x -->
+                            <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke-width="2" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="pt-5 pb-6">
+                    <div class="px-2 space-y-1">
+                        <a href="#products"
+                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Products</a>
+                        <a href="https://drops.scamsniffer.io"
+                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Blog</a>
+                        <a href="#fight"
+                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Community</a>
+                        <!--                                 <a href="https://explorer.scamsniffer.io/" target="_blank"  class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Stolen NFTs Explorer</a> -->
+                        <a href="https://docs.scamsniffer.io/" target="_blank"
+                            class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">API
+                            Docs</a>
 
-                                <!-- <a href="#"
+                        <!-- <a href="#"
                                     class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Product</a>
                 
                                 <a href="#"
@@ -190,8 +309,8 @@
                 
                                 <a href="#"
                                     class="block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:bg-gray-50">Company</a> -->
-                            </div>
-                            <!-- <div class="mt-6 px-5">
+                    </div>
+                    <!-- <div class="mt-6 px-5">
                                 <a href="#"
                                     class="block text-center w-full py-3 px-4 rounded-md shadow bg-gradient-to-r from-teal-500 to-cyan-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700">Start
                                     free trial</a>
@@ -200,57 +319,58 @@
                                 <p class="text-center text-base font-medium text-gray-500">Existing customer? <a href="#"
                                         class="text-gray-900 hover:underline">Login</a></p>
                             </div> -->
-                        </div>
-                    </div>
                 </div>
+            </div>
+        </div>
 
-            </header>
-            <main>
-                <div class="pt-10 bg-gray-600 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
-                    <div class="mx-auto max-w-7xl lg:px-8">
-                        <div class="lg:grid lg:grid-cols-2 lg:gap-8">
-                            <div
-                                class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
-                                <div class="lg:py-24">
-                                    <a href="#"
-                                        class="inline-flex items-center text-white bg-black-d rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200">
-                                        <!-- <span class="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full">We're hiring</span>
+        </header>
+        <main>
+            <div class="pt-10 bg-gray-600 sm:pt-16 lg:pt-8 lg:pb-14 lg:overflow-hidden">
+                <div class="mx-auto max-w-7xl lg:px-8">
+                    <div class="lg:grid lg:grid-cols-2 lg:gap-8">
+                        <div
+                            class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center">
+                            <div class="lg:pt-16">
+                                <a href="#"
+                                    class="inline-flex items-center text-white bg-black-d rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200">
+                                    <!-- <span class="px-3 py-0.5 text-white text-xs font-semibold leading-5 uppercase tracking-wide bg-gradient-to-r from-teal-500 to-cyan-600 rounded-full">We're hiring</span>
                   <span class="ml-4 text-sm">Visit our careers page</span>
                   <svg class="ml-2 w-5 h-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                   </svg> -->
-                                    </a>
-                                    <h1
-                                        class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
-                                        <span class="block">
-                                            All-in-One Web3
-                                            <!-- A better way to -->
-                                        </span>
-                                        <span
-                                            class="pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-cyan-400 sm:pb-5">
-                                            <!-- fight
+                                </a>
+                                <h1
+                                    class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl">
+                                    <span class="block">
+                                        All-in-One Web3
+                                        <!-- A better way to -->
+                                    </span>
+                                    <span
+                                        class="pb-3 block bg-clip-text text-transparent bg-gradient-to-r from-teal-200 to-cyan-400 sm:pb-5">
+                                        <!-- fight
                                             with scammer -->
-                                            Anti-Scam Solution
+                                        Anti-Scam Solution
 
-                                        </span>
-                                    </h1>
-                                    <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
-                                        Enhance anti-scam capability of individual users to accelerate the mass adoption
-                                        of web3.
-                                    </p>
-                                    <div class="mt-10 sm:mt-12">
-                                        <!-- <a href="#fight"
+                                    </span>
+                                </h1>
+                                <p class="text-base text-gray-300 sm:text-xl lg:text-lg xl:text-xl">
+                                    Enhance anti-scam capability of individual users to accelerate the mass adoption
+                                    of web3.
+                                </p>
+                                <div class="mt-10 sm:mt-12">
+                                    <!-- <a href="#fight"
                                             class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md bg-white hover:bg-gray-300">
                                             Let's fight
                                         </a> -->
 
-                                        <a href="mailto:b2b@scamsniffer.io"
-                                            class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md bg-white hover:bg-gray-300">
-                                            Request API Access
-                                        </a>
+                                    <a href="mailto:b2b@scamsniffer.io"
+                                        class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md bg-white hover:bg-gray-300">
+                                        Request API Access
+                                    </a>
 
 
-                                        <!-- <form action="#" class="sm:max-w-xl sm:mx-auto lg:mx-0">
+
+                                    <!-- <form action="#" class="sm:max-w-xl sm:mx-auto lg:mx-0">
                     <div class="sm:flex">
                       <div class="min-w-0 flex-1">
                         <label for="email" class="sr-only">Email address</label>
@@ -262,157 +382,185 @@
                     </div>
                     <p class="mt-3 text-sm text-gray-300 sm:mt-4">Start your free 14-day trial, no credit card necessary. By providing your email, you agree to our <a href="#" class="font-medium text-white">terms of service</a>.</p>
                   </form> -->
-                                    </div>
+                                </div>
+
+                                <div class="mt-12 pt-12">
+                                    <p class="text-center text-sm font-semibold text-gray-100 lg:text-left">Used by</p>
+                                    <ul role="list"
+                                        class="mx-auto mt-5 flex max-w-xl flex-wrap justify-center gap-x-10 gap-y-8 lg:mx-0 lg:justify-start grayscale brightness-[1.8]">
+
+                                        <li class="flex">
+                                            <img alt="Forbes" loading="lazy" decoding="async" data-nimg="1" class="h-5"
+                                                style="color:transparent" src="assets/partner/rabby-inner.svg">
+                                        </li>
+
+                                        <li class="flex">
+                                            <img alt="Forbes" loading="lazy" decoding="async" data-nimg="1" class="h-5"
+                                                style="color:transparent" src="assets/partner/opensea_light.webp">
+                                        </li>
+
+                                        <li class="flex">
+                                            <img alt="Forbes" loading="lazy" decoding="async" data-nimg="1" class="h-5"
+                                                style="color:transparent" src="assets/partner/misttrack.png">
+                                        </li>
+
+                                        <li class="flex">
+                                            <img alt="Forbes" loading="lazy" decoding="async" data-nimg="1" class="h-5"
+                                                style="color:transparent" src="assets/partner/phantom-logo-purple.svg">
+                                        </li>
+
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
-                                <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
-                                    <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
-                                    <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                        src="https://tailwindui.com/img/component-images/cloud-illustration-teal-cyan.svg"
-                                        alt="">
-                                </div>
+                        </div>
+                        <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative">
+                            <div class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:px-0">
+                                <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
+                                <img class="w-full lg:absolute lg:inset-y-0 lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                                    src="https://tailwindui.com/img/component-images/cloud-illustration-teal-cyan.svg"
+                                    alt="">
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
 
-                <!-- Feature section with screenshot -->
-                <div class="relative bg-gray-50 pt-16 pb-16 sm:pt-24 lg:pt-32">
-                    <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
-                        <div>
-                            <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Scammers</h2>
-                            <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">They are
-                                everywhere</p>
-                            <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
-                                Scammers spread their phishing sites through Discord, Twitter, Ads<br>
-                                Many people do not verify carefully and fall for the scam
-                            </p>
-
-                        </div>
-
-
-                        <div class="mt-12 mb-12 pt-10">
-                            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                                <div class="pt-6">
-                                    <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                                        <div class="-mt-6">
-                                            <img src="./assets/twitter.png?11" class="shadow rounded-3xl" />
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <div class="pt-6">
-                                    <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                                        <div class="-mt-6">
-                                            <img src="./assets/discord.png?1" class="shadow rounded-3xl" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pt-6">
-                                    <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                                        <div class="-mt-6">
-                                            <img src="./assets/googleads.png?11" class="shadow rounded-3xl" />
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
+            <!-- Feature section with screenshot -->
+            <div class="relative bg-gray-50 pt-16 pb-16 sm:pt-24 lg:pt-32">
+                <div class="mx-auto max-w-md px-4 text-center sm:px-6 sm:max-w-3xl lg:px-8 lg:max-w-7xl">
+                    <div>
+                        <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Scammers</h2>
+                        <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">They are
+                            everywhere</p>
+                        <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">
+                            Scammers spread their phishing sites through Discord, Twitter, Ads<br>
+                            Many people do not verify carefully and fall for the scam
+                        </p>
 
                     </div>
-                </div>
 
-                <!-- Feature section with grid -->
-                <div class="relative bg-white py-16 sm:py-24 lg:py-32" style="display: none;">
-                    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-                        <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Fight</h2>
-                        <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">How do we
-                            fight?</p>
-                        <!-- <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">Phasellus lorem quam molestie id quisque diam aenean nulla in. Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend condimentum id viverra nulla.</p> -->
 
-                        <div class="mt-12 mb-12 pt-10">
-                            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                                <div class="pt-6">
-                                    <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                                        <div class="-mt-6">
-                                            <div>
-                                                <span
-                                                    class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
-                                                    <!-- Heroicon name: outline/cloud-upload -->
-                                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
-                                                    </svg>
-                                                </span>
-                                            </div>
-                                            <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Database
-                                            </h3>
-                                            <p class="mt-5 text-base text-gray-500">
-                                                Aggregate popular projects from Coingecko and Opensea<br>
-                                            </p>
-                                        </div>
+                    <div class="mt-12 mb-12 pt-10">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="pt-6">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                                    <div class="-mt-6">
+                                        <img src="./assets/twitter.png?11" class="shadow rounded-3xl" />
                                     </div>
+
                                 </div>
-
-                                <div class="pt-6">
-                                    <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                                        <div class="-mt-6">
-                                            <div>
-                                                <span
-                                                    class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
-                                                    <!-- Heroicon name: outline/refresh -->
-                                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                                                    </svg>
-                                                </span>
-
-                                            </div>
-                                            <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Detect
-                                            </h3>
-                                            <p class="mt-5 text-base text-gray-500">Once we find projects mentioned,
-                                                links and twitter account information will be checked</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="pt-6">
-                                    <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
-                                        <div class="-mt-6">
-                                            <div>
-                                                <span
-                                                    class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
-                                                    <!-- Heroicon name: outline/lock-closed -->
-                                                    <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none" viewBox="0 0 24 24" stroke-width="2"
-                                                        stroke="currentColor" aria-hidden="true">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                                                    </svg>
-                                                </span>
-
-                                            </div>
-                                            <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Protect
-                                            </h3>
-                                            <p class="mt-5 text-base text-gray-500">Scam links will be aggregate and
-                                                report to the MetaMask phishing detect</p>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </div>
-                        </div>
 
-                        <!-- 
+                            <div class="pt-6">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                                    <div class="-mt-6">
+                                        <img src="./assets/discord.png?1" class="shadow rounded-3xl" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                                    <div class="-mt-6">
+                                        <img src="./assets/googleads.png?11" class="shadow rounded-3xl" />
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <!-- Feature section with grid -->
+            <div class="relative bg-white py-16 sm:py-24 lg:py-32" style="display: none;">
+                <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+                    <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Fight</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">How do we
+                        fight?</p>
+                    <!-- <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">Phasellus lorem quam molestie id quisque diam aenean nulla in. Accumsan in quis quis nunc, ullamcorper malesuada. Eleifend condimentum id viverra nulla.</p> -->
+
+                    <div class="mt-12 mb-12 pt-10">
+                        <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <div class="pt-6">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                                    <div class="-mt-6">
+                                        <div>
+                                            <span
+                                                class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
+                                                <!-- Heroicon name: outline/cloud-upload -->
+                                                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Database
+                                        </h3>
+                                        <p class="mt-5 text-base text-gray-500">
+                                            Aggregate popular projects from Coingecko and Opensea<br>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                                    <div class="-mt-6">
+                                        <div>
+                                            <span
+                                                class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
+                                                <!-- Heroicon name: outline/refresh -->
+                                                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                                </svg>
+                                            </span>
+
+                                        </div>
+                                        <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Detect
+                                        </h3>
+                                        <p class="mt-5 text-base text-gray-500">Once we find projects mentioned,
+                                            links and twitter account information will be checked</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-6">
+                                <div class="flow-root bg-gray-50 rounded-lg px-6 pb-8">
+                                    <div class="-mt-6">
+                                        <div>
+                                            <span
+                                                class="inline-flex items-center justify-center p-3 bg-gradient-to-r from-teal-500 to-cyan-600 rounded-md shadow-lg">
+                                                <!-- Heroicon name: outline/lock-closed -->
+                                                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
+                                                    fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                                    stroke="currentColor" aria-hidden="true">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                                </svg>
+                                            </span>
+
+                                        </div>
+                                        <h3 class="mt-8 text-lg font-medium text-gray-900 tracking-tight">Protect
+                                        </h3>
+                                        <p class="mt-5 text-base text-gray-500">Scam links will be aggregate and
+                                            report to the MetaMask phishing detect</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- 
                         <div class="rounded-lg bg-white sm:grid sm:grid-cols-2">
                             <div class="flex flex-col p-6 text-center">
                                 <img src="assets/banner.png?ass" />
@@ -421,24 +569,24 @@
                                 <img src="assets/banner2.png?aaZZaa" />
                             </div>
                         </div> -->
-                        <!-- <p class="mt-16"><img class="mt-10 md:max-w-2xl sm:max-w-md  mx-auto" src="assets/banner.png?aaaa" />
+                    <!-- <p class="mt-16"><img class="mt-10 md:max-w-2xl sm:max-w-md  mx-auto" src="assets/banner.png?aaaa" />
                             <img class="mt-10 md:max-w-2xl sm:max-w-md  mx-auto" src="assets/banner2.png?aaaa" />
                         </p> -->
-                    </div>
                 </div>
+            </div>
 
 
-                <div class="relative bg-white py-16 sm:py-24 lg:py-32" id="products">
-                    <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
-                        <!-- <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Mission</h2>
+            <div class="relative bg-white py-16 sm:py-24 lg:py-32" id="products">
+                <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+                    <!-- <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Mission</h2>
                         <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Our Mission</p>
                         <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">To create the most respected and widely adopted anti-scam platform that is <br/> built and owned by the community.</p> -->
-                        <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Product</h2>
-                        <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Our Products
-                        </p>
-                        <!-- <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">To create the most respected and widely adopted anti-scam platform that is <br/> built and owned by the community.</p> -->
+                    <h2 class="text-base font-semibold tracking-wider text-cyan-600 uppercase">Product</h2>
+                    <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Our Products
+                    </p>
+                    <!-- <p class="mt-5 max-w-prose mx-auto text-xl text-gray-500">To create the most respected and widely adopted anti-scam platform that is <br/> built and owned by the community.</p> -->
 
-                        <!-- 
+                    <!-- 
                         <div class="rounded-lg bg-white sm:grid sm:grid-cols-2">
                             <div class="flex flex-col p-6 text-center">
                                 <img src="assets/banner.png?ass" />
@@ -447,22 +595,22 @@
                                 <img src="assets/banner2.png?aaZZaa" />
                             </div>
                         </div> -->
-                        <!-- <p class="mt-16"><img class="mt-10 md:max-w-2xl sm:max-w-md  mx-auto" src="assets/banner.png?aaaa" />
+                    <!-- <p class="mt-16"><img class="mt-10 md:max-w-2xl sm:max-w-md  mx-auto" src="assets/banner.png?aaaa" />
                             <img class="mt-10 md:max-w-2xl sm:max-w-md  mx-auto" src="assets/banner2.png?aaaa" />
                         </p> -->
-                    </div>
                 </div>
+            </div>
 
-                <!-- Alternating Feature Sections -->
-                <div class="relative pt-20 pb-32 overflow-hidden" id="features">
-                    <!-- <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
+            <!-- Alternating Feature Sections -->
+            <div class="relative pt-20 pb-32 overflow-hidden" id="features">
+                <!-- <div class="mx-auto max-w-md px-4 text-center sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl">
                         <p class="mt-2 text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl">Product</p>
                     </div> -->
-                    <div aria-hidden="true" class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b to-gray-100"></div>
-                    <div class="relative">
-                        <div
-                            class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
-                            <!-- <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-48 bg-gradient-to-b to-gray-100"></div>
+                <div class="relative">
+                    <div
+                        class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
+                        <!-- <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
                                 <div>
                                     <div>
                                         <span
@@ -516,87 +664,87 @@
                             </div> -->
 
 
+                        <div class="mt-12 sm:mt-16 lg:mt-0">
+                            <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
+                                <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
+                                    src="./assets/opensea-alert.jpg?1101" alt="Inbox user interface">
+                            </div>
+                        </div>
+                        <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
+                            <div>
+                                <div class="mt-6" id="browser-plugin">
+                                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">API Solution
+                                    </h2>
+                                    <p class="mt-4 text-lg text-gray-500">
+                                        With our Malicious Website Detection and Blacklist API, you could provide
+                                        more safe web3 browsing and signing experience for your users!
+                                    </p>
+
+                                    <div class="mt-6">
+                                        <a target="_blank" href="https://docs.scamsniffer.io/apis/lookup-api"
+                                            class="inline-flex bg-gradient-to-r from-teal-500 to-cyan-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white">
+                                            Get Started </a>
+
+                                        <a target="_blank" href="mailto:b2b@scamsniffer.io"
+                                            class="ml-3 inline-flex bg-origin-border px-4 py-2 border  text-base font-medium rounded-md shadow-sm">
+                                            Request Access </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-40">
+
+                    <div class="relative">
+                        <div
+                            class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
+                            <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
+                                <div>
+                                    <div>
+                                        <span
+                                            class="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-teal-500 to-cyan-600">
+                                            <!-- Heroicon name: outline/inbox -->
+                                            <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
+                                                class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                                stroke-width="2">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="mt-6" id="browser-plugin">
+                                        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">Browser
+                                            Extension
+                                        </h2>
+                                        <p class="mt-4 text-lg text-gray-500">
+                                            Our browser extension will alert you as soon as we detect a phishing
+                                            site that
+                                            poses a risk
+                                        </p>
+                                        <div class="mt-6">
+                                            <a target="_blank"
+                                                href="https://chrome.google.com/webstore/detail/scam-sniffer/mnkbccinkbalkmmnmbcicdobcmgggmfc"
+                                                class="inline-flex bg-gradient-to-r from-teal-500 to-cyan-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white">
+                                                Add to Chrome </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="mt-12 sm:mt-16 lg:mt-0">
                                 <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
                                     <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                        src="./assets/opensea-alert.jpg?1101" alt="Inbox user interface">
-                                </div>
-                            </div>
-                            <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
-                                <div>
-                                    <div class="mt-6" id="browser-plugin">
-                                        <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">API Solution
-                                        </h2>
-                                        <p class="mt-4 text-lg text-gray-500">
-                                            With our Malicious Website Detection and Blacklist API, you could provide
-                                            more safe web3 browsing and signing experience for your users!
-                                        </p>
-
-                                        <div class="mt-6">
-                                            <a target="_blank" href="https://docs.scamsniffer.io/apis/lookup-api"
-                                                class="inline-flex bg-gradient-to-r from-teal-500 to-cyan-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white">
-                                                Get Started </a>
-
-                                            <a target="_blank" href="mailto:b2b@scamsniffer.io"
-                                                class="ml-3 inline-flex bg-origin-border px-4 py-2 border  text-base font-medium rounded-md shadow-sm">
-                                                Request Access </a>
-                                        </div>
-                                    </div>
+                                        src="./assets/chrome-extension.png?ll" alt="Inbox user interface">
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-40">
+                </div>
 
-                        <div class="relative">
-                            <div
-                                class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
-                                <div class="px-4 max-w-xl mx-auto sm:px-6 lg:py-16 lg:max-w-none lg:mx-0 lg:px-0">
-                                    <div>
-                                        <div>
-                                            <span
-                                                class="h-12 w-12 rounded-md flex items-center justify-center bg-gradient-to-r from-teal-500 to-cyan-600">
-                                                <!-- Heroicon name: outline/inbox -->
-                                                <svg class="h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg"
-                                                    class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                                    stroke="currentColor" stroke-width="2">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                                                </svg>
-                                            </span>
-                                        </div>
-                                        <div class="mt-6" id="browser-plugin">
-                                            <h2 class="text-3xl font-extrabold tracking-tight text-gray-900">Browser
-                                                Extension
-                                            </h2>
-                                            <p class="mt-4 text-lg text-gray-500">
-                                                Our browser extension will alert you as soon as we detect a phishing
-                                                site that
-                                                poses a risk
-                                            </p>
-                                            <div class="mt-6">
-                                                <a target="_blank"
-                                                    href="https://chrome.google.com/webstore/detail/scam-sniffer/mnkbccinkbalkmmnmbcicdobcmgggmfc"
-                                                    class="inline-flex bg-gradient-to-r from-teal-500 to-cyan-600 bg-origin-border px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white">
-                                                    Add to Chrome </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mt-12 sm:mt-16 lg:mt-0">
-                                    <div class="pl-4 -mr-48 sm:pl-6 md:-mr-16 lg:px-0 lg:m-0 lg:relative lg:h-full">
-                                        <img class="w-full rounded-xl shadow-xl ring-1 ring-black ring-opacity-5 lg:absolute lg:left-0 lg:h-full lg:w-auto lg:max-w-none"
-                                            src="./assets/chrome-extension.png?ll" alt="Inbox user interface">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="mt-40 mb-40">
-                        <!-- 
+                <div class="mt-40 mb-40">
+                    <!-- 
                        <div class="relative">
                             <div
                                 class="lg:mx-auto lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-2 lg:grid-flow-col-dense lg:gap-24">
@@ -640,57 +788,54 @@
                             </div>
                         </div>
                    -->
-                    </div>
+                </div>
 
-                    <div id="summary-list" class="bg-gray-50 pb-10">
-                        <div class="bg-graxy-50 bg-xwhite pt-12 sm:pt-16" v-if="report">
-                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-dashed">
-                                <div class="max-w-4xl mx-auto text-center">
-                                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Scam Summary
-                                    </h2>
-                                    <!-- <p class="mt-3 text-xl text-gray-500 sm:mt-4">
+                <div id="summary-list" class="bg-gray-50 pb-10">
+                    <div class="bg-graxy-50 bg-xwhite pt-12 sm:pt-16" v-if="report">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-dashed">
+                            <div class="max-w-4xl mx-auto text-center">
+                                <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">Scam Summary
+                                </h2>
+                                <!-- <p class="mt-3 text-xl text-gray-500 sm:mt-4">
                                         Aggregate from our Discord bot, plugin 
                                     </p> -->
-                                </div>
                             </div>
-                            <div class="mt-10">
-                                <div class="relative">
-                                    <!-- <div class="absolute inset-0 h-1/2 bg-gray-50"></div> -->
-                                    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                        <div class="max-w-4xl mx-auto">
-                                            <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
-                                                <div
-                                                    class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
-                                                    <dt
-                                                        class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                                                        Total Scanned</dt>
-                                                    <dd class="order-1 text-5xl font-extrabold text-indigo-600">
-                                                        <!-- {{
+                        </div>
+                        <div class="mt-10">
+                            <div class="relative">
+                                <!-- <div class="absolute inset-0 h-1/2 bg-gray-50"></div> -->
+                                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                                    <div class="max-w-4xl mx-auto">
+                                        <dl class="rounded-lg bg-white shadow-lg sm:grid sm:grid-cols-3">
+                                            <div
+                                                class="flex flex-col border-b border-gray-100 p-6 text-center sm:border-0 sm:border-r">
+                                                <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                                                    Total Scanned</dt>
+                                                <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+                                                    <!-- {{
                                                         report.summary.total }} -->
-                                                        2.65m
-                                                    </dd>
-                                                </div>
-                                                <div
-                                                    class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-                                                    <dt
-                                                        class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                                                        Scams found</dt>
-                                                    <dd class="order-1 text-5xl font-extrabold text-indigo-600">
-                                                        48k
-                                                    </dd>
-                                                </div>
+                                                    2.65m
+                                                </dd>
+                                            </div>
+                                            <div
+                                                class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+                                                <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                                                    Scams found</dt>
+                                                <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+                                                    48k
+                                                </dd>
+                                            </div>
 
-                                                <div
-                                                    class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
-                                                    <dt
-                                                        class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
-                                                        Total Queries</dt>
-                                                    <dd class="order-1 text-5xl font-extrabold text-indigo-600">
-                                                        1010m
-                                                    </dd>
-                                                </div>
+                                            <div
+                                                class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+                                                <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">
+                                                    Total Queries</dt>
+                                                <dd class="order-1 text-5xl font-extrabold text-indigo-600">
+                                                    1010m
+                                                </dd>
+                                            </div>
 
-                                                <!-- <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
+                                            <!-- <div class="flex flex-col border-t border-b border-gray-100 p-6 text-center sm:border-0 sm:border-l sm:border-r">
                                                     <dt class="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">NFT Stolen</dt>
                                                     <dd class="order-1 text-5xl font-extrabold text-indigo-600">
                                                         <a href="https://dune.com/queries/875108" target="_blank">2375</a>
@@ -704,7 +849,7 @@
                                                     <a href="https://dune.com/queries/875108" target="_blank">1225 Ξ</a>
                                                 </dd>
                                             </div> -->
-                                                <!-- 
+                                            <!-- 
                                                 <div
                                                     class="flex flex-col border-t border-gray-100 p-6 text-center sm:border-0 sm:border-l">
                                                     <iframe
@@ -723,98 +868,96 @@
 
 
 
-                                            </dl>
-                                        </div>
+                                        </dl>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
 
-                        <div class="max-w-6xl mx-auto">
-                            <div class="sm:grid sm:grid-cols-2">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="sm:grid sm:grid-cols-2">
 
-                                <div class="flex flex-col p-6 text-center">
+                            <div class="flex flex-col p-6 text-center">
 
-                                    <div class="px-4 py-5 sm:px-6">
-                                        <div
-                                            class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-                                            <div class="ml-4 mt-2">
-                                                <h3 class="text-lg leading-6 font-medium text-gray-900">Scam Activity
-                                                </h3>
-                                            </div>
-                                            <div class="ml-4 mt-2 flex-shrink-0">
-                                                <!-- <a href="https://github.com/MetaMask/eth-phishing-detect/pull/7575" target="_blank"
-                                            style="font-size: 12px">Metamask</a> -->
-                                            </div>
+                                <div class="px-4 py-5 sm:px-6">
+                                    <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+                                        <div class="ml-4 mt-2">
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Scam Activity
+                                            </h3>
                                         </div>
-                                    </div>
-
-                                    <div class="bg-white shadow overflow-hidden sm:rounded-md">
-                                        <ul role="list" class="divide-y divide-gray-200">
-                                            <li v-for="reported in report.recentScamActivity">
-                                                <a :href="reported.link" target="_blank" class="block hover:bg-gray-50">
-                                                    <div class="flex  px-4 py-4 sm:px-6">
-                                                        <img class="h-6 w-6 rounded-full mr-2"
-                                                            :src="'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+reported.host+'&size=128'"
-                                                            alt="">
-                                                        <div class="flex-1 space-y-1">
-                                                            <div class="flex items-center justify-between">
-                                                                <h3 class="text-sm text-gray-600 font-medium">{{
-                                                                    reported.host }}</h3>
-                                                                <p class="text-sm text-gray-500">
-                                                                    {{ reported.fromNow}}
-                                                                    <!-- {{ reported.project }} -->
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <!-- More items... -->
-                                        </ul>
+                                        <div class="ml-4 mt-2 flex-shrink-0">
+                                            <!-- <a href="https://github.com/MetaMask/eth-phishing-detect/pull/7575" target="_blank"
+                                            style="font-size: 12px">Metamask</a> -->
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col p-6 text-center">
+
+                                <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                                    <ul role="list" class="divide-y divide-gray-200">
+                                        <li v-for="reported in report.recentScamActivity">
+                                            <a :href="reported.link" target="_blank" class="block hover:bg-gray-50">
+                                                <div class="flex  px-4 py-4 sm:px-6">
+                                                    <img class="h-6 w-6 rounded-full mr-2"
+                                                        :src="'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+reported.host+'&size=128'"
+                                                        alt="">
+                                                    <div class="flex-1 space-y-1">
+                                                        <div class="flex items-center justify-between">
+                                                            <h3 class="text-sm text-gray-600 font-medium">{{
+                                                                reported.host }}</h3>
+                                                            <p class="text-sm text-gray-500">
+                                                                {{ reported.fromNow}}
+                                                                <!-- {{ reported.project }} -->
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+
+                                        <!-- More items... -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="flex flex-col p-6 text-center">
 
 
-                                    <div class="px-4 py-5 sm:px-6">
-                                        <div
-                                            class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
-                                            <div class="ml-4 mt-2">
-                                                <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Reported
-                                                </h3>
-                                            </div>
-                                            <div class="ml-4 mt-2 flex-shrink-0">
-                                                <a href="https://github.com/MetaMask/eth-phishing-detect/pulls?q=is%3Apr+Scam+Sniffer"
-                                                    target="_blank" style="font-size: 12px">
-                                                    <img src="assets/metamask.svg" height="25" style="
+                                <div class="px-4 py-5 sm:px-6">
+                                    <div class="-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap">
+                                        <div class="ml-4 mt-2">
+                                            <h3 class="text-lg leading-6 font-medium text-gray-900">Recent Reported
+                                            </h3>
+                                        </div>
+                                        <div class="ml-4 mt-2 flex-shrink-0">
+                                            <a href="https://github.com/MetaMask/eth-phishing-detect/pulls?q=is%3Apr+Scam+Sniffer"
+                                                target="_blank" style="font-size: 12px">
+                                                <img src="assets/metamask.svg" height="25" style="
     max-height: 16px;
 " />
-                                                </a>
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <!-- <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">
+                                <!-- <h2 class="text-1xl text-left font-extrabold text-gray-500 sm:text-2xl mb-8">
                               
                             </h2> -->
-                                    <div class="bg-white shadow overflow-hidden sm:rounded-md">
-                                        <ul role="list" class="divide-y divide-gray-200">
-                                            <li v-for="reported in report.recentReported">
-                                                <a :href="'https://'+reported.host" target="_blank"
-                                                    class="block hover:bg-gray-50">
-                                                    <div class="flex  px-4 py-4 sm:px-6">
-                                                        <img class="h-6 w-6 rounded-full mr-2"
-                                                            :src="'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+reported.host+'&size=128'"
-                                                            alt="">
-                                                        <div class="flex-1 space-y-1">
-                                                            <div class="flex items-center justify-between">
-                                                                <h3 class="text-sm text-gray-600  font-medium">{{
-                                                                    reported.host }}</h3>
-                                                                <!-- <p class="text-sm text-gray-500">
+                                <div class="bg-white shadow overflow-hidden sm:rounded-md">
+                                    <ul role="list" class="divide-y divide-gray-200">
+                                        <li v-for="reported in report.recentReported">
+                                            <a :href="'https://'+reported.host" target="_blank"
+                                                class="block hover:bg-gray-50">
+                                                <div class="flex  px-4 py-4 sm:px-6">
+                                                    <img class="h-6 w-6 rounded-full mr-2"
+                                                        :src="'https://t1.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://'+reported.host+'&size=128'"
+                                                        alt="">
+                                                    <div class="flex-1 space-y-1">
+                                                        <div class="flex items-center justify-between">
+                                                            <h3 class="text-sm text-gray-600  font-medium">{{
+                                                                reported.host }}</h3>
+                                                            <!-- <p class="text-sm text-gray-500">
                                                                     <svg class="flex-shrink-0 mr-1.5 h-5 w-5 text-green-400"
                                                                         xmlns="http://www.w3.org/2000/svg"
                                                                         viewBox="0 0 20 20" fill="currentColor"
@@ -824,365 +967,108 @@
                                                                             clip-rule="evenodd" />
                                                                     </svg>
                                                                 </p> -->
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                </a>
-                                            </li>
+                                                </div>
+                                            </a>
+                                        </li>
 
-                                            <!-- More items... -->
-                                        </ul>
-                                    </div>
+                                        <!-- More items... -->
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-
-
-
-                        <!-- {{ report }} -->
                     </div>
 
-                    <!-- CTA Section -->
-                    <div class="relative bg-gray-50">
-                        <!-- <div class="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
+
+
+                    <!-- {{ report }} -->
+                </div>
+
+                <!-- CTA Section -->
+                <div class="relative bg-gray-50">
+                    <!-- <div class="relative h-56 bg-indigo-600 sm:h-72 md:absolute md:left-0 md:h-full md:w-1/2">
                                   <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&sat=-100" alt="">
                                   <div aria-hidden="true" class="absolute inset-0 bg-gradient-to-r from-teal-500 to-cyan-600 mix-blend-multiply"></div>
                                 </div> -->
-
-                        <div class="bg-white">
-                            <div class="mx-auto x-4 py-12 sm:max-w-7xl sm:px-3 sm:py-10 md:py-14 lg:px-6 lg:py-8">
-                                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                                    <div class="bg-white">
-                                        <div class="mx-auto max-w-7xl py-12 px-6 lg:py-16 lg:px-8">
-                                            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-dashed">
-                                                <div class="max-w-4xl mx-auto text-center">
-                                                    <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                                                        Partners
-                                                    </h2>
-                                                </div>
-                                            </div>
-                                            <div class="mt-9 mb-5 grid grid-cols-2 gap-0.5 md:grid-cols-4">
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="h-12" src="assets/partner/chainabuse.png?121"
-                                                        alt="ChainAbuse">
-                                                </div>
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-12" src="assets/partner/slowmist.png"
-                                                        alt="SlowMist">
-                                                </div>
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-12" src="assets/partner/logo-defihacklabs.png"
-                                                        alt="DeFiHackLabs">
-                                                </div>
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-9" src="assets/partner/logo-darkhandbook.png"
-                                                        alt="DarkHandBook">
-                                                </div>
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-12" src="assets/partner/lxdao-logo.svg"
-                                                        alt="LxDAO">
-                                                </div>
-
-
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-10" src="assets/mask.svg" alt="Mask">
-                                                </div>
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-10" src="assets/etherscan-logo.svg"
-                                                        alt="EtherScan">
-                                                </div>
-
-                                                <!-- <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <img class="max-h-10" src="assets/logo-512w.png" alt="Dune">
-                                            </div> -->
-                                                <!--                                             
-                                            <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <img class="max-h-10" src="assets/metamask-logo-2.svg" alt="MetaMask">
-                                            </div> -->
-
-                                                <!-- <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <img class="max-h-10" src="assets/google-safe-browsing.webp"
-                                                alt="Google SafeBrowsing">
-                                            </div> -->
-
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-12" src="assets/partner/forta.png?12" alt="Forta">
-                                                </div>
-
-
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-12" src="assets/partner/0xscope.png?1"
-                                                        alt="0xScope">
-                                                </div>
-
-                                                <div
-                                                    class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                    <img class="max-h-8" src="assets/partner/goplus.png" alt="GoPlus">
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                    <!-- <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
-                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                                            <img class="h-10" src="assets/partner/chainabuse.png?121" alt="ChainAbuse">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-                                            <img class="h-10" src="assets/partner/slowmist.png" alt="SlowMist">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                                            <img class="h-10" src="assets/partner/logo-defihacklabs.png" alt="DeFiHackLabs">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-                                            <img class="h-10" src="assets/partner/logo-darkhandbook.png" alt="DarkHandBook">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                                            <img class="h-10" src="assets/partner/lxdao-logo.svg"
-                                                alt="LxDAO">
-                                        </div>
-
-                                    </div>
-
-                                    <div class="grid grid-cols-2  mt-14  gap-8 md:grid-cols-6 lg:grid-cols-5">
-                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                                            <img class="h-9" src="assets/mask.svg" alt="Mask">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-                                            <img class="h-9" src="assets/logo-512w.png" alt="Dune">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
-                                            <img class="h-9" src="assets/etherscan-logo.svg" alt="EtherScan">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                                            <img class="h-9" src="assets/metamask-logo-2.svg" alt="MetaMask">
-                                        </div>
-
-                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
-                                            <img class="h-9" src="assets/google-safe-browsing.webp"
-                                                alt="Google SafeBrowsing">
-                                        </div>
-
-                                    </div> -->
-
-
-                                </div>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-                    <div class="bg-gray-50 py-24 sm:py-32">
-                        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-                            <div class="mx-auto max-w-2xl text-center">
-                                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Blog</h2>
-                                <!-- <p class="mt-2 text-lg leading-8 text-gray-600">Learn how to grow your business with our expert advice.</p> -->
-                            </div>
-                            <div
-                                class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                                <article class="flex flex-col items-start justify-between">
-                                    <div class="relative w-full">
-                                        <img src="https://drops.scamsniffer.io/wp-content/uploads/2023/04/banner-blog1567.jpg"
-                                            class="rounded-2xl">
-                                        <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10">
-                                        </div>
-                                    </div>
-                                    <div class="max-w-xl">
-                                        <div class="mt-8 flex items-center gap-x-4 text-xs">
-                                            <time datetime="2020-03-16" class="text-gray-500">April 03, 2023</time>
-                                            <a href="#"
-                                                class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Security
-                                                Analysis</a>
-                                        </div>
-                                        <div class="group relative">
-                                            <h3
-                                                class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                                <a
-                                                    href="https://drops.scamsniffer.io/post/new-scam-as-a-service-provider-venom-drainer/">
-                                                    <span class="absolute inset-0"></span>
-                                                    New Scam as a Service Provider: Venom Drainer
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </article>
-
-                                <article class="flex flex-col items-start justify-between">
-                                    <div class="relative w-full">
-                                        <img src="https://drops.scamsniffer.io/wp-content/uploads/2023/04/BSCex-exploit.png"
-                                            class="rounded-2xl">
-                                        <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10">
-                                        </div>
-                                    </div>
-                                    <div class="max-w-xl">
-                                        <div class="mt-8 flex items-center gap-x-4 text-xs">
-                                            <time datetime="2020-03-16" class="text-gray-500">March 27, 2023</time>
-                                            <a href="#"
-                                                class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Security
-                                                Analysis</a>
-                                        </div>
-                                        <div class="group relative">
-                                            <h3
-                                                class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                                <a
-                                                    href="https://drops.scamsniffer.io/post/vulnerability-in-the-early-bscex-swapx-contract-of-launchzone/">
-                                                    <span class="absolute inset-0"></span>
-                                                    Vulnerability in the early Bscex SwapX Contract of Launchzone
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </article>
-
-
-                                <article class="flex flex-col items-start justify-between">
-                                    <div class="relative w-full">
-                                        <img src="https://drops.scamsniffer.io/wp-content/uploads/2023/01/polygon-scam-2-2.png"
-                                            class="rounded-2xl">
-                                        <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10">
-                                        </div>
-                                    </div>
-                                    <div class="max-w-xl">
-                                        <div class="mt-8 flex items-center gap-x-4 text-xs">
-                                            <time datetime="2020-03-16" class="text-gray-500">Jan 11, 2023</time>
-                                            <a href="#"
-                                                class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Security
-                                                Analysis</a>
-                                        </div>
-                                        <div class="group relative">
-                                            <h3
-                                                class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                                                <a
-                                                    href="https://drops.scamsniffer.io/post/nft-airdrop-phishing-case-study-how-the-victims-are-targeted-and-scam-is-conducted/">
-                                                    <span class="absolute inset-0"></span>
-                                                    NFT airdrop phishing: a case study of how the victims are targeted
-                                                </a>
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </article>
-
-
-
-                                <!-- More posts... -->
-                            </div>
-                        </div>
-                    </div>
-
 
                     <div class="bg-white">
                         <div class="mx-auto x-4 py-12 sm:max-w-7xl sm:px-3 sm:py-10 md:py-14 lg:px-6 lg:py-8">
                             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                                 <div class="bg-white">
                                     <div class="mx-auto max-w-7xl py-12 px-6 lg:py-16 lg:px-8">
-                                        <div
-                                            class="max-w-7xl mb-12 mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-dashed">
+                                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-dashed">
                                             <div class="max-w-4xl mx-auto text-center">
                                                 <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                                                    Backed by industry pioneers
+                                                    Partners
                                                 </h2>
                                             </div>
                                         </div>
-
-                                        <div class="border-gray-200 mt-12 pb-2">
-                                            <div class="text-center">
-                                                <h3 class="ml-2 mt-2 text-base font-semibold leading-6 text-gray-900">
-                                                    Angels & Support</h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="grid grid-cols-2 gap-0.5 md:grid-cols-5">
+                                        <div class="mt-9 mb-5 grid grid-cols-2 gap-0.5 md:grid-cols-4">
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <div class="text-center text-gray-600 text-sm">
-                                                    <div class="text-gray-900 text-xl">evilcos</div>
-                                                    SlowMist
-                                                </div>
+                                                <img class="h-12" src="assets/partner/chainabuse.png?121"
+                                                    alt="ChainAbuse">
                                             </div>
-
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <div class="text-center text-gray-600 text-sm">
-                                                    <div class="text-gray-900 text-xl">23pds</div>
-                                                    SlowMist
-                                                </div>
+                                                <img class="max-h-12" src="assets/partner/slowmist.png" alt="SlowMist">
                                             </div>
-
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <div class="text-center text-gray-600 text-sm">
-                                                    <div class="text-gray-900 text-xl">Yisi Liu</div>
-                                                    Next.ID
-                                                </div>
+                                                <img class="max-h-12" src="assets/partner/logo-defihacklabs.png"
+                                                    alt="DeFiHackLabs">
                                             </div>
-
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <div class="text-center text-gray-600 text-sm">
-                                                    <div class="text-gray-900 text-xl">Deli Gong</div>
-                                                    Automata Network
-                                                </div>
+                                                <img class="max-h-9" src="assets/partner/logo-darkhandbook.png"
+                                                    alt="DarkHandBook">
                                             </div>
-
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <div class="text-center text-gray-600 text-sm">
-                                                    <div class="text-gray-900 text-xl">Mike</div>
-                                                    GoPlus+
-                                                </div>
+                                                <img class="max-h-12" src="assets/partner/lxdao-logo.svg" alt="LxDAO">
                                             </div>
 
-                                        </div>
 
-                                        <div class="border-gray-200 mt-12 pb-2">
-                                            <div class="text-center">
-                                                <h3 class="ml-2 mt-2 text-base font-semibold leading-6 text-gray-900">
-                                                    Grants & Support</h3>
-                                            </div>
-                                        </div>
-
-                                        <div class="grid grid-cols-2 gap-0.5 md:grid-cols-4">
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
                                                 <img class="max-h-10" src="assets/mask.svg" alt="Mask">
                                             </div>
+                                            <div
+                                                class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                                <img class="max-h-10" src="assets/etherscan-logo.svg" alt="EtherScan">
+                                            </div>
+
+                                            <!-- <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                                <img class="max-h-10" src="assets/logo-512w.png" alt="Dune">
+                                            </div> -->
+                                            <!--                                             
+                                            <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                                <img class="max-h-10" src="assets/metamask-logo-2.svg" alt="MetaMask">
+                                            </div> -->
+
+                                            <!-- <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                                <img class="max-h-10" src="assets/google-safe-browsing.webp"
+                                                alt="Google SafeBrowsing">
+                                            </div> -->
 
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <img class="max-h-12" src="assets/partner/gitcoin.png" alt="GitCoin">
+                                                <img class="max-h-12" src="assets/partner/forta.png?12" alt="Forta">
+                                            </div>
+
+
+                                            <div
+                                                class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                                <img class="max-h-12" src="assets/partner/0xscope.png?1" alt="0xScope">
                                             </div>
 
                                             <div
                                                 class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <img class="max-h-9" src="assets/partner/scroll.png" alt="Scroll">
-                                            </div>
-
-                                            <div
-                                                class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
-                                                <img class="max-h-9" src="assets/partner/plancker.png?1" alt="Scroll">
+                                                <img class="max-h-8" src="assets/partner/goplus.png" alt="GoPlus">
                                             </div>
 
                                         </div>
-
                                     </div>
                                 </div>
 
@@ -1240,36 +1126,278 @@
                         </div>
                     </div>
 
-                    <div class="bg-gray-50" id="fight">
 
-                        <div class="mx-auto x-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
-                            <div class="text-center">
-                                <p class="mt-2 text-gray-900 text-3xl font-extrabold tracking-tight sm:text-4xl">Join
-                                    the
-                                    fight</p>
-                                <p class="mt-3 text-lg text-gray-500">
-                                    Our Mission is to create the most respected and widely adopted anti-scam platform
-                                    that is <br /> built and owned by the community.
-                                </p>
-                                <div class="mt-8">
-                                    <div class="inline-flex ">
-                                        <a href="https://discord.com/invite/UfrduBeefK" target="_blank"
-                                            class="inline-flex rounded-md shadow items-center justify-center px-5 mr-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
-                                            Join Discord
-                                            <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" width="100%" height="100%"
-                                                viewBox="0 0 71 55" focusable="false"
-                                                style="width: 24px; height: 24px;">
-                                                <g transform="matrix(1,0,0,1,-1.09937e-07,-0.411745)">
-                                                    <path
-                                                        d="M60.105,4.898C55.579,2.821 50.727,1.292 45.653,0.415C45.56,0.399 45.468,0.441 45.42,0.525C44.796,1.635 44.105,3.083 43.621,4.222C38.164,3.405 32.734,3.405 27.389,4.222C26.905,3.058 26.189,1.635 25.562,0.525C25.514,0.444 25.422,0.401 25.329,0.415C20.258,1.289 15.406,2.819 10.878,4.898C10.838,4.915 10.805,4.943 10.783,4.98C1.578,18.731 -0.944,32.144 0.293,45.391C0.299,45.456 0.335,45.518 0.386,45.558C6.459,50.017 12.341,52.725 18.115,54.52C18.207,54.548 18.305,54.514 18.364,54.438C19.73,52.573 20.947,50.606 21.991,48.538C22.052,48.417 21.994,48.274 21.868,48.226C19.937,47.493 18.098,46.6 16.329,45.586C16.189,45.504 16.178,45.304 16.307,45.208C16.679,44.929 17.051,44.639 17.407,44.346C17.471,44.293 17.561,44.281 17.636,44.315C29.256,49.62 41.835,49.62 53.318,44.315C53.394,44.279 53.483,44.29 53.55,44.343C53.906,44.636 54.278,44.929 54.653,45.208C54.782,45.304 54.773,45.504 54.633,45.586C52.865,46.62 51.026,47.493 49.092,48.223C48.966,48.271 48.91,48.417 48.972,48.538C50.038,50.603 51.255,52.57 52.596,54.435C52.652,54.514 52.753,54.548 52.845,54.52C58.646,52.725 64.529,50.017 70.602,45.558C70.655,45.518 70.689,45.459 70.694,45.394C72.175,30.079 68.215,16.776 60.197,4.982C60.177,4.943 60.144,4.915 60.105,4.898ZM23.726,37.325C20.228,37.325 17.345,34.114 17.345,30.169C17.345,26.225 20.172,23.013 23.726,23.013C27.308,23.013 30.163,26.253 30.107,30.169C30.107,34.114 27.28,37.325 23.726,37.325ZM47.318,37.325C43.82,37.325 40.937,34.114 40.937,30.169C40.937,26.225 43.764,23.013 47.318,23.013C50.9,23.013 53.755,26.253 53.699,30.169C53.699,34.114 50.9,37.325 47.318,37.325Z"
-                                                        style="fill: currentColor;"></path>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                        <a href="https://twitter.com/realScamSniffer" target="_blank"
-                                            class="inline-flex rounded-md shadow items-center justify-center px-5 mr-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
-                                            Follow US
-                                            <!-- <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" width="100%" height="100%" viewBox="0 0 71 55" focusable="false"
+                </div>
+
+
+                <div class="bg-gray-50 py-24 sm:py-32">
+                    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                        <div class="mx-auto max-w-2xl text-center">
+                            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Blog</h2>
+                            <!-- <p class="mt-2 text-lg leading-8 text-gray-600">Learn how to grow your business with our expert advice.</p> -->
+                        </div>
+                        <div
+                            class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                            <article class="flex flex-col items-start justify-between">
+                                <div class="relative w-full">
+                                    <img src="https://drops.scamsniffer.io/wp-content/uploads/2023/04/banner-blog1567.jpg"
+                                        class="rounded-2xl">
+                                    <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10">
+                                    </div>
+                                </div>
+                                <div class="max-w-xl">
+                                    <div class="mt-8 flex items-center gap-x-4 text-xs">
+                                        <time datetime="2020-03-16" class="text-gray-500">April 03, 2023</time>
+                                        <a href="#"
+                                            class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Security
+                                            Analysis</a>
+                                    </div>
+                                    <div class="group relative">
+                                        <h3
+                                            class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                            <a
+                                                href="https://drops.scamsniffer.io/post/new-scam-as-a-service-provider-venom-drainer/">
+                                                <span class="absolute inset-0"></span>
+                                                New Scam as a Service Provider: Venom Drainer
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </article>
+
+                            <article class="flex flex-col items-start justify-between">
+                                <div class="relative w-full">
+                                    <img src="https://drops.scamsniffer.io/wp-content/uploads/2023/04/BSCex-exploit.png"
+                                        class="rounded-2xl">
+                                    <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10">
+                                    </div>
+                                </div>
+                                <div class="max-w-xl">
+                                    <div class="mt-8 flex items-center gap-x-4 text-xs">
+                                        <time datetime="2020-03-16" class="text-gray-500">March 27, 2023</time>
+                                        <a href="#"
+                                            class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Security
+                                            Analysis</a>
+                                    </div>
+                                    <div class="group relative">
+                                        <h3
+                                            class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                            <a
+                                                href="https://drops.scamsniffer.io/post/vulnerability-in-the-early-bscex-swapx-contract-of-launchzone/">
+                                                <span class="absolute inset-0"></span>
+                                                Vulnerability in the early Bscex SwapX Contract of Launchzone
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </article>
+
+
+                            <article class="flex flex-col items-start justify-between">
+                                <div class="relative w-full">
+                                    <img src="https://drops.scamsniffer.io/wp-content/uploads/2023/01/polygon-scam-2-2.png"
+                                        class="rounded-2xl">
+                                    <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10">
+                                    </div>
+                                </div>
+                                <div class="max-w-xl">
+                                    <div class="mt-8 flex items-center gap-x-4 text-xs">
+                                        <time datetime="2020-03-16" class="text-gray-500">Jan 11, 2023</time>
+                                        <a href="#"
+                                            class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">Security
+                                            Analysis</a>
+                                    </div>
+                                    <div class="group relative">
+                                        <h3
+                                            class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                                            <a
+                                                href="https://drops.scamsniffer.io/post/nft-airdrop-phishing-case-study-how-the-victims-are-targeted-and-scam-is-conducted/">
+                                                <span class="absolute inset-0"></span>
+                                                NFT airdrop phishing: a case study of how the victims are targeted
+                                            </a>
+                                        </h3>
+                                    </div>
+                                </div>
+                            </article>
+
+
+
+                            <!-- More posts... -->
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="bg-white">
+                    <div class="mx-auto x-4 py-12 sm:max-w-7xl sm:px-3 sm:py-10 md:py-14 lg:px-6 lg:py-8">
+                        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                            <div class="bg-white">
+                                <div class="mx-auto max-w-7xl py-12 px-6 lg:py-16 lg:px-8">
+                                    <div class="max-w-7xl mb-12 mx-auto px-4 sm:px-6 lg:px-8 divide-y divide-dashed">
+                                        <div class="max-w-4xl mx-auto text-center">
+                                            <h2 class="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                                                Backed by industry pioneers
+                                            </h2>
+                                        </div>
+                                    </div>
+
+                                    <div class="border-gray-200 mt-12 pb-2">
+                                        <div class="text-center">
+                                            <h3 class="ml-2 mt-2 text-base font-semibold leading-6 text-gray-900">
+                                                Angels & Support</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-0.5 md:grid-cols-5">
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <div class="text-center text-gray-600 text-sm">
+                                                <div class="text-gray-900 text-xl">evilcos</div>
+                                                SlowMist
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <div class="text-center text-gray-600 text-sm">
+                                                <div class="text-gray-900 text-xl">23pds</div>
+                                                SlowMist
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <div class="text-center text-gray-600 text-sm">
+                                                <div class="text-gray-900 text-xl">Yisi Liu</div>
+                                                Next.ID
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <div class="text-center text-gray-600 text-sm">
+                                                <div class="text-gray-900 text-xl">Deli Gong</div>
+                                                Automata Network
+                                            </div>
+                                        </div>
+
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <div class="text-center text-gray-600 text-sm">
+                                                <div class="text-gray-900 text-xl">Mike</div>
+                                                GoPlus+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="border-gray-200 mt-12 pb-2">
+                                        <div class="text-center">
+                                            <h3 class="ml-2 mt-2 text-base font-semibold leading-6 text-gray-900">
+                                                Grants & Support</h3>
+                                        </div>
+                                    </div>
+
+                                    <div class="grid grid-cols-2 gap-0.5 md:grid-cols-4">
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <img class="max-h-10" src="assets/mask.svg" alt="Mask">
+                                        </div>
+
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <img class="max-h-12" src="assets/partner/gitcoin.png" alt="GitCoin">
+                                        </div>
+
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <img class="max-h-9" src="assets/partner/scroll.png" alt="Scroll">
+                                        </div>
+
+                                        <div class="col-span-1 flex items-center justify-center bg-gray-50 py-8 px-8">
+                                            <img class="max-h-9" src="assets/partner/plancker.png?1" alt="Scroll">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="grid grid-cols-2 gap-8 md:grid-cols-6 lg:grid-cols-5">
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-10" src="assets/partner/chainabuse.png?121" alt="ChainAbuse">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
+                                            <img class="h-10" src="assets/partner/slowmist.png" alt="SlowMist">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-10" src="assets/partner/logo-defihacklabs.png" alt="DeFiHackLabs">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
+                                            <img class="h-10" src="assets/partner/logo-darkhandbook.png" alt="DarkHandBook">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-10" src="assets/partner/lxdao-logo.svg"
+                                                alt="LxDAO">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="grid grid-cols-2  mt-14  gap-8 md:grid-cols-6 lg:grid-cols-5">
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-9" src="assets/mask.svg" alt="Mask">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
+                                            <img class="h-9" src="assets/logo-512w.png" alt="Dune">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-3 lg:col-span-1">
+                                            <img class="h-9" src="assets/etherscan-logo.svg" alt="EtherScan">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-9" src="assets/metamask-logo-2.svg" alt="MetaMask">
+                                        </div>
+
+                                        <div class="col-span-1 flex justify-center md:col-span-2 lg:col-span-1">
+                                            <img class="h-9" src="assets/google-safe-browsing.webp"
+                                                alt="Google SafeBrowsing">
+                                        </div>
+
+                                    </div> -->
+
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50" id="fight">
+
+                    <div class="mx-auto x-4 py-12 sm:max-w-7xl sm:px-6 sm:py-20 md:py-28 lg:px-8 lg:py-32">
+                        <div class="text-center">
+                            <p class="mt-2 text-gray-900 text-3xl font-extrabold tracking-tight sm:text-4xl">Join
+                                the
+                                fight</p>
+                            <p class="mt-3 text-lg text-gray-500">
+                                Our Mission is to create the most respected and widely adopted anti-scam platform
+                                that is <br /> built and owned by the community.
+                            </p>
+                            <div class="mt-8">
+                                <div class="inline-flex ">
+                                    <a href="https://discord.com/invite/UfrduBeefK" target="_blank"
+                                        class="inline-flex rounded-md shadow items-center justify-center px-5 mr-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                                        Join Discord
+                                        <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" width="100%" height="100%"
+                                            viewBox="0 0 71 55" focusable="false" style="width: 24px; height: 24px;">
+                                            <g transform="matrix(1,0,0,1,-1.09937e-07,-0.411745)">
+                                                <path
+                                                    d="M60.105,4.898C55.579,2.821 50.727,1.292 45.653,0.415C45.56,0.399 45.468,0.441 45.42,0.525C44.796,1.635 44.105,3.083 43.621,4.222C38.164,3.405 32.734,3.405 27.389,4.222C26.905,3.058 26.189,1.635 25.562,0.525C25.514,0.444 25.422,0.401 25.329,0.415C20.258,1.289 15.406,2.819 10.878,4.898C10.838,4.915 10.805,4.943 10.783,4.98C1.578,18.731 -0.944,32.144 0.293,45.391C0.299,45.456 0.335,45.518 0.386,45.558C6.459,50.017 12.341,52.725 18.115,54.52C18.207,54.548 18.305,54.514 18.364,54.438C19.73,52.573 20.947,50.606 21.991,48.538C22.052,48.417 21.994,48.274 21.868,48.226C19.937,47.493 18.098,46.6 16.329,45.586C16.189,45.504 16.178,45.304 16.307,45.208C16.679,44.929 17.051,44.639 17.407,44.346C17.471,44.293 17.561,44.281 17.636,44.315C29.256,49.62 41.835,49.62 53.318,44.315C53.394,44.279 53.483,44.29 53.55,44.343C53.906,44.636 54.278,44.929 54.653,45.208C54.782,45.304 54.773,45.504 54.633,45.586C52.865,46.62 51.026,47.493 49.092,48.223C48.966,48.271 48.91,48.417 48.972,48.538C50.038,50.603 51.255,52.57 52.596,54.435C52.652,54.514 52.753,54.548 52.845,54.52C58.646,52.725 64.529,50.017 70.602,45.558C70.655,45.518 70.689,45.459 70.694,45.394C72.175,30.079 68.215,16.776 60.197,4.982C60.177,4.943 60.144,4.915 60.105,4.898ZM23.726,37.325C20.228,37.325 17.345,34.114 17.345,30.169C17.345,26.225 20.172,23.013 23.726,23.013C27.308,23.013 30.163,26.253 30.107,30.169C30.107,34.114 27.28,37.325 23.726,37.325ZM47.318,37.325C43.82,37.325 40.937,34.114 40.937,30.169C40.937,26.225 43.764,23.013 47.318,23.013C50.9,23.013 53.755,26.253 53.699,30.169C53.699,34.114 50.9,37.325 47.318,37.325Z"
+                                                    style="fill: currentColor;"></path>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                    <a href="https://twitter.com/realScamSniffer" target="_blank"
+                                        class="inline-flex rounded-md shadow items-center justify-center px-5 mr-8 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                                        Follow US
+                                        <!-- <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" width="100%" height="100%" viewBox="0 0 71 55" focusable="false"
                                                 style="width: 24px; height: 24px;">
                                                 <g transform="matrix(1,0,0,1,-1.09937e-07,-0.411745)">
                                                     <path
@@ -1277,38 +1405,37 @@
                                                         style="fill: currentColor;"></path>
                                                 </g>
                                             </svg> -->
-                                            <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" fill="currentColor"
-                                                viewBox="0 0 24 24" aria-hidden="true">
-                                                <path
-                                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                            </svg>
-                                        </a>
-                                        <a href="https://chrome.google.com/webstore/detail/scam-sniffer/mnkbccinkbalkmmnmbcicdobcmgggmfc"
-                                            target="_blank"
-                                            class="inline-flex  rounded-md shadow items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
-                                            Install plugin
-                                            <!-- Heroicon name: solid/external-link -->
-                                            <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400"
-                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                                                fill="currentColor" aria-hidden="true">
-                                                <path
-                                                    d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
-                                                <path
-                                                    d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
-                                            </svg>
-                                        </a>
+                                        <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" fill="currentColor"
+                                            viewBox="0 0 24 24" aria-hidden="true">
+                                            <path
+                                                d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                        </svg>
+                                    </a>
+                                    <a href="https://chrome.google.com/webstore/detail/scam-sniffer/mnkbccinkbalkmmnmbcicdobcmgggmfc"
+                                        target="_blank"
+                                        class="inline-flex  rounded-md shadow items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-gray-900 bg-white hover:bg-gray-50">
+                                        Install plugin
+                                        <!-- Heroicon name: solid/external-link -->
+                                        <svg class="-mr-1 ml-3 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path
+                                                d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+                                            <path
+                                                d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+                                        </svg>
+                                    </a>
 
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-            </main>
+        </main>
 
 
-            <!--
+        <!--
       This example requires Tailwind CSS v2.0+ 
       
       This example requires some changes to your config:
@@ -1324,10 +1451,10 @@
       }
       ```
     -->
-            <footer class="bg-white" aria-labelledby="footer-heading">
-                <h2 id="footer-heading" class="sr-only">Footer</h2>
-                <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-                    <!-- <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+        <footer class="bg-white" aria-labelledby="footer-heading">
+            <h2 id="footer-heading" class="sr-only">Footer</h2>
+            <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+                <!-- <div class="xl:grid xl:grid-cols-3 xl:gap-8">
                 <div class="grid grid-cols-2 gap-8 xl:col-span-2">
                     <div class="md:grid md:grid-cols-2 md:gap-8">
                         <div>
@@ -1431,19 +1558,19 @@
                     </form>
                 </div>
             </div> -->
-                    <div class="mt-8 border-gray-200 pt-8 md:flex md:items-center md:justify-between">
-                        <div class="flex space-x-6 md:order-2">
-                            <a href="https://discord.com/invite/UfrduBeefK" target="_blank"
-                                class="text-gray-400 hover:text-gray-500">
-                                <span class="sr-only">Discord</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                            <!-- 
+                <div class="mt-8 border-gray-200 pt-8 md:flex md:items-center md:justify-between">
+                    <div class="flex space-x-6 md:order-2">
+                        <a href="https://discord.com/invite/UfrduBeefK" target="_blank"
+                            class="text-gray-400 hover:text-gray-500">
+                            <span class="sr-only">Discord</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                        <!-- 
                             <a href="#" class="text-gray-400 hover:text-gray-500">
                                 <span class="sr-only">Instagram</span>
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -1453,26 +1580,26 @@
                                 </svg>
                             </a> -->
 
-                            <a href="https://twitter.com/realScamSniffer" target="_blank"
-                                class="text-gray-400 hover:text-gray-500">
-                                <span class="sr-only">Twitter</span>
-                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path
-                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                                </svg>
-                            </a>
+                        <a href="https://twitter.com/realScamSniffer" target="_blank"
+                            class="text-gray-400 hover:text-gray-500">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path
+                                    d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                            </svg>
+                        </a>
 
-                            <a href="https://github.com/scamsniffer" target="_blank"
-                                class="text-gray-400 hover:text-gray-500">
-                                <span class="sr-only">GitHub</span>
-                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path fill-rule="evenodd"
-                                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
+                        <a href="https://github.com/scamsniffer" target="_blank"
+                            class="text-gray-400 hover:text-gray-500">
+                            <span class="sr-only">GitHub</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill-rule="evenodd"
+                                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </a>
 
-                            <!-- <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <!-- <a href="#" class="text-gray-400 hover:text-gray-500">
                                 <span class="sr-only">Dribbble</span>
                                 <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd"
@@ -1480,15 +1607,15 @@
                                         clip-rule="evenodd" />
                                 </svg>
                             </a> -->
-                        </div>
-                        <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">&copy; 2022 ScamSniffer, Inc. All
-                            rights reserved.
-                        </p>
                     </div>
+                    <p class="mt-8 text-base text-gray-400 md:mt-0 md:order-1">&copy; 2022 ScamSniffer, Inc. All
+                        rights reserved.
+                    </p>
                 </div>
-            </footer>
+            </div>
+        </footer>
 
-        </div>
+    </div>
     </div>
 
     <script>
